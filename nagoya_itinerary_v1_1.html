@@ -1,0 +1,675 @@
+<!doctype html>
+<html lang="zh-Hant">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>名古屋親子美食購物七日行程 — HTML 正本</title>
+    <!-- Tailwind CDN：確保樣式與畫布預覽一致 -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;600;700;800&family=Noto+Serif+TC:wght@700;800&display=swap" rel="stylesheet">
+    <style>
+      summary::-webkit-details-marker { display: none; }
+      body { font-family: 'Noto Sans TC', ui-sans-serif, system-ui, -apple-system, 'Segoe UI', Roboto, Arial, 'PingFang TC', 'Microsoft JhengHei', 'Noto Sans CJK TC', sans-serif; }
+      .title-font { font-family: 'Noto Serif TC', ui-serif, Georgia, serif; letter-spacing: .2px; }
+    </style>
+  </head>
+  <body class="min-h-screen bg-neutral-50 body-font">
+    <!-- 頂部工具列 -->
+    <div class="sticky top-0 z-30 backdrop-blur supports-[backdrop-filter]:bg-white/70 bg-white/80 border-b">
+      <div class="mx-auto max-w-6xl px-4 py-3 flex items-center gap-3">
+        <div class="flex items-center gap-2">
+          <span class="inline-block w-5 h-5 rounded bg-black"></span>
+          <h1 class="text-xl sm:text-2xl font-semibold tracking-tight title-font">名古屋親子美食購物七日行程</h1>
+        </div>
+        <div class="ml-auto flex items-center gap-2">
+          <button onclick="window.print()" class="border rounded-md px-3 py-1.5 text-sm">列印</button>
+          <button id="dljson" class="bg-black text-white rounded-md px-3 py-1.5 text-sm">匯出 JSON</button>
+        </div>
+      </div>
+    </div>
+
+    <main class="mx-auto max-w-6xl px-4 pb-16 pt-6">
+      <!-- Hero -->
+      <section class="mb-6">
+        <div class="relative overflow-hidden rounded-2xl border shadow-sm">
+          <img src="https://www.legoland.jp/media/lvqbobyy/entrance_3-1.jpg" alt="Hero" class="w-full h-64 object-cover" fetchpriority="high">
+          </div>
+        </section>
+
+      <div class="my-6 border-t"></div>
+
+      <!-- 航班區塊 -->
+      <section class="mb-8" id="flights">
+        <div class="flex items-center gap-2 py-2">
+          <span class="text-xl">✈️</span>
+          <h2 class="text-2xl font-semibold tracking-tight title-font">航班</h2>
+        </div>
+        <div class="shadow-sm rounded-xl border bg-white">
+          <div class="p-3 grid grid-cols-1 md:grid-cols-2 gap-4">
+            <!-- 去程 -->
+            <div class="rounded-xl border p-4">
+              <div class="flex items-center gap-2 mb-2"><span class="inline-flex items-center justify-center rounded-full bg-gray-100 border px-2 py-0.5 text-xs">去程</span></div>
+              <div class="text-base text-gray-700 font-medium">日本航空 JAL</div>
+              <div class="flex items-center gap-2 mt-1 text-sm"><span class="inline-flex items-center rounded-full bg-gray-100 border px-2 py-0.5">JL8670</span><span>2025/08/31 (日)</span></div>
+              <div class="grid grid-cols-2 gap-2 items-center mt-2 text-base">
+                <div class="flex items-center gap-2 text-lg font-semibold">14:05</div>
+                <div class="text-right text-gray-500">桃園機場 第2航廈 (TPE T2)</div>
+                <div class="flex items-center gap-2 text-lg font-semibold">17:50</div>
+                <div class="text-right text-gray-500">中部國際機場 第1航廈 (NGO T1)</div>
+              </div>
+            </div>
+            <!-- 回程 -->
+            <div class="rounded-xl border p-4">
+              <div class="flex items-center gap-2 mb-2"><span class="inline-flex items-center justify-center rounded-full bg-gray-100 border px-2 py-0.5 text-xs">回程</span></div>
+              <div class="text-base text-gray-700 font-medium">日本航空 JAL</div>
+              <div class="flex items-center gap-2 mt-1 text-sm"><span class="inline-flex items-center rounded-full bg-gray-100 border px-2 py-0.5">JL8671</span><span>2025/09/06 (六)</span></div>
+              <div class="grid grid-cols-2 gap-2 items-center mt-2 text-base">
+                <div class="flex items-center gap-2 text-lg font-semibold">10:40</div>
+                <div class="text-right text-gray-500">中部國際機場 第1航廈 (NGO T1)</div>
+                <div class="flex items-center gap-2 text-lg font-semibold">12:45</div>
+                <div class="text-right text-gray-500">桃園機場 第2航廈 (TPE T2)</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <!-- 每日行程 -->
+      <section class="mb-8" id="itinerary">
+        <div class="flex items-center gap-2 py-2">
+          <span class="text-xl">🗓️</span>
+          <h2 class="text-2xl font-semibold tracking-tight title-font">每日行程</h2>
+        </div>
+          <!-- D1 -->
+          <div class="shadow-sm rounded-xl border bg-white">
+            <div class="p-4 border-b">
+              <div class="flex items-baseline justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-3">
+                  <span class="inline-flex items-center justify-center rounded-full bg-black text-white px-3 py-1 text-base md:text-lg font-semibold">第 1 天</span>
+                  <span class="text-lg md:text-2xl font-semibold tracking-tight">2025/08/31 (日)</span>
+                </div>
+              </div>
+              <div class="text-xl md:text-2xl mt-2 font-semibold">抵達名古屋・入住飯店</div>
+            </div>
+            <div class="p-4 space-y-3">
+              <!-- 摘要 -->
+              <div class="space-y-1">
+                <p class="text-base text-gray-700 leading-relaxed">抵達中部國際機場，前往名古屋市區並辦理入住。</p>
+                <p class="text-base text-gray-700 leading-relaxed">晚間以休息調整為主，可於 Sasashima Live 商圈簡單用餐或採買。</p>
+              </div>
+              <!-- 圖片 -->
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://photo.settour.com.tw/900x600/https://www.settour.com.tw/ss_img/info/location/NGO/O0/NGO0000012/NGO0000012_56401.jpg" alt="d1-1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.princehotels.co.jp/nagoya/images/night-view%20meieki01.jpg" alt="d1-2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.princehotels.co.jp/nagoya/experience/common/img/img_cont06-1.jpg" alt="d1-3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+              </div>
+              <!-- 交通動線 -->
+              <div class="rounded-xl border p-3 text-sm bg-white mt-2">
+                <div class="flex items-center gap-2 mb-2">🚆 交通動線</div>
+                <ul class="list-disc pl-5 space-y-1">
+                  <li>機場 NGO → 名鐵名古屋：搭『μ-SKY』約30分；或一般特急35–40分；皆可用 IC 卡。</li>
+                  <li>名古屋駅 → ささしまライブ：青波線1站步行可達；亦可步行/計程車；GLOBAL GATE 有連通動線。</li>
+                </ul>
+              </div>
+              <!-- 餐食/住宿 -->
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🍽️ 三餐</div>
+                  <ul class="space-y-1">
+                    <li>早餐：—</li>
+                    <li>午餐：機上/自理</li>
+                    <li>晚餐：Sasashima Live 周邊輕食/餐廳</li>
+                  </ul>
+                </div>
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🛏️ 住宿</div>
+                  <div>名古屋天空塔王子飯店（GLOBAL GATE）</div>
+                </div>
+              </div>
+              <!-- 展開行程內容 -->
+              <details class="border rounded-xl mt-2 group">
+                <summary class="w-full flex items-center justify-between px-3 py-2 text-sm cursor-pointer list-none">
+                  <span class="flex items-center gap-2"><span class="chev transition-transform group-open:rotate-180">▾</span> 展開行程內容</span>
+                </summary>
+                <div class="px-4 pb-3 text-sm text-gray-600 space-y-2">
+                  <div class="space-y-3">
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">住宿資訊</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>名古屋天空塔王子飯店；地址：愛知県名古屋市中村区平池町4-60-12；Check-in 15:00 起。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">周邊/便利</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>GLOBAL GATE 內設 FamilyMart；商圈餐廳/咖啡多，生活機能佳。</li>
+                        <li>補充營業時間：FamilyMart 常見 07:00–23:00（以現場為準）。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">用餐建議</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>便利商店輕食，或 Sasashima Live 餐廳（Dining & Bar ONEONE、L'Amour 等）。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">親子提醒</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>提前備妥 IC 卡；把隔日樂高樂園所需用品先整理好。</li>
+                        <li>首日晚到以入住與休息為主，無安排正式觀光。</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- D2 -->
+          <div class="shadow-sm rounded-xl border bg-white">
+            <div class="p-4 border-b">
+              <div class="flex items-baseline justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-3">
+                  <span class="inline-flex items-center justify-center rounded-full bg-black text-white px-3 py-1 text-base md:text-lg font-semibold">第 2 天</span>
+                  <span class="text-lg md:text-2xl font-semibold tracking-tight">2025/09/01 (一)</span>
+                </div>
+              </div>
+              <div class="text-xl md:text-2xl mt-2 font-semibold">樂高樂園親子冒險日</div>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="space-y-1">
+                <p class="text-base text-gray-700 leading-relaxed">前往金城ふ頭，全天暢玩 LEGOLAND／SEA LIFE，傍晚返回市區。</p>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.legoland.jp/media/pjagn2v5/hero_re3.jpg" alt="d2-1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.legoland.jp/media/vzifm0xv/1daypass.jpg" alt="d2-2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+              </div>
+              <div class="rounded-xl border p-3 text-sm bg-white mt-2">
+                <div class="flex items-center gap-2 mb-2">🚆 交通動線</div>
+                <ul class="list-disc pl-5 space-y-1">
+                  <li>飯店 → ささしまライブ駅：步行約5分。</li>
+                  <li>ささしまライブ → 金城ふ頭：青波線約24分；約每15分一班，建議 08:00–08:30 搭乘。</li>
+                  <li>金城ふ頭駅 → 樂高樂園：沿 Maker’s Pier 步行約7分抵入口。</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🍽️ 三餐</div>
+                  <ul class="space-y-1">
+                    <li>早餐：飯店/便利商店</li>
+                    <li>午餐：園內餐廳（Bricks／Knight’s Table 等）</li>
+                    <li>晚餐：名古屋駅周邊自理</li>
+                  </ul>
+                </div>
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🛏️ 住宿</div>
+                  <div>名古屋天空塔王子飯店（GLOBAL GATE）</div>
+                </div>
+              </div>
+              <details class="border rounded-xl mt-2 group">
+                <summary class="w-full flex items-center justify-between px-3 py-2 text-sm cursor-pointer list-none">
+                  <span class="flex items-center gap-2"><span class="chev transition-transform group-open:rotate-180">▾</span> 展開行程內容</span>
+                </summary>
+                <div class="px-4 pb-3 text-sm text-gray-600 space-y-2">
+                  <div class="space-y-3">
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">園區重點</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>七大主題區，從動手創作到雲霄飛車皆有，親子向豐富。</li>
+                        <li>迷你樂園（Miniland）：以積木重現日本城市地標。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">遊樂/表演</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>騎士王國：The Dragon 雲霄飛車。</li>
+                        <li>探險區：Lost Kingdom Adventure 射擊互動。</li>
+                        <li>忍者世界：忍者主題遊樂與表演。</li>
+                        <li>海盜/水上區：可能濺濕，夏季清涼。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">餐飲與購物</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>Bricks Family Restaurant 自助餐；Knight’s Table 炸物/漢堡；園內多輕食與兒童餐。</li>
+                        <li>The Big Shop 集中限定商品；Maker’s Pier 周邊也有親子商店。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">裝備建議</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>水上區請備泳衣、防曬、替換衣物與毛巾；可加玩 SEA LIFE 水族館。</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- D3 -->
+          <div class="shadow-sm rounded-xl border bg-white">
+            <div class="p-4 border-b">
+              <div class="flex items-baseline justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-3">
+                  <span class="inline-flex items-center justify-center rounded-full bg-black text-white px-3 py-1 text-base md:text-lg font-semibold">第 3 天</span>
+                  <span class="text-lg md:text-2xl font-semibold tracking-tight">2025/09/02 (二)</span>
+                </div>
+              </div>
+              <div class="text-xl md:text-2xl mt-2 font-semibold">名古屋港水族館・LaLaport 購物・Anitouch 室內動物園</div>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="space-y-1">
+                <p class="text-base text-gray-700 leading-relaxed">名古屋港水族館＋LaLaport 逛街與室內動物園，晚間用餐後返程。</p>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://nagoyaaqua.jp/images/language/img6.jpg" alt="d3-1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://nagoyaaqua.jp/images/language/img1.jpg" alt="d3-2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.nagoya.anitouch.com/wp-content/themes/anitouch/assets/img/top/nekoashi.png" alt="d3-3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+              </div>
+              <div class="rounded-xl border p-3 text-sm bg-white mt-2">
+                <div class="flex items-center gap-2 mb-2">🚆 交通動線</div>
+                <ul class="list-disc pl-5 space-y-1">
+                  <li>水上交通：ささしまライブ 運河碼頭 → 名古屋港，觀光船約40–60分。</li>
+                  <li>陸上交通：或改搭地鐵名港線至名古屋港（水族館出站步行可達）。</li>
+                  <li>名古屋港 → LaLaport：步行約10–15分，或地鐵1站。</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🍽️ 三餐</div>
+                  <ul class="space-y-1">
+                    <li>早餐：飯店/便利商店</li>
+                    <li>午餐：水族館或 LaLaport 美食街</li>
+                    <li>晚餐：LaLaport 餐廳街</li>
+                  </ul>
+                </div>
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🛏️ 住宿</div>
+                  <div>名古屋天空塔王子飯店（GLOBAL GATE）</div>
+                </div>
+              </div>
+              <details class="border rounded-xl mt-2 group">
+                <summary class="w-full flex items-center justify-between px-3 py-2 text-sm cursor-pointer list-none">
+                  <span class="flex items-center gap-2"><span class="chev transition-transform group-open:rotate-180">▾</span> 展開行程內容</span>
+                </summary>
+                <div class="px-4 pb-3 text-sm text-gray-600 space-y-2">
+                  <div class="space-y-3">
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">水族館重點</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>南館：南極/赤道海域；北館：海豚/虎鯨等。</li>
+                        <li>親子互動展區豐富，適合半日以上停留。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">表演/動線</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>海豚秀等熱門，建議先看場次表規劃動線。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">購物/設施</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>紀念品店有海洋主題玩偶與教具。</li>
+                        <li>LaLaport：親子服飾、動漫周邊與文具；Anitouch 室內動物園全天候。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">營業時間</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>水族館常見 9:30–17:30；LaLaport 10:00–21:00（餐飲或至22:00）；Anitouch 10:00–19:00（以官網為準）。</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- D4 -->
+          <div class="shadow-sm rounded-xl border bg-white">
+            <div class="p-4 border-b">
+              <div class="flex items-baseline justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-3">
+                  <span class="inline-flex items-center justify-center rounded-full bg-black text-white px-3 py-1 text-base md:text-lg font-semibold">第 4 天</span>
+                  <span class="text-lg md:text-2xl font-semibold tracking-tight">2025/09/03 (三)</span>
+                </div>
+              </div>
+              <div class="text-xl md:text-2xl mt-2 font-semibold">吉卜力公園夢幻探險</div>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="space-y-1">
+                <p class="text-base text-gray-700 leading-relaxed">造訪愛・地球博記念公園內的吉卜力公園，分區參觀拍照打卡。</p>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://ghibli-park.jp/site/img/about/daisouko/img12.jpg" alt="d4-1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.nagoya-info.jp/upload/spots/large/121592624163c0b4cc69d85.jpg" alt="d4-2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.nagoya-info.jp/upload/spots/large/173925933163c0b45bde951.jpg" alt="d4-3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://magazine.atnavi.net/wp-content/uploads/2024/03/DSC_6618-1024x682.jpg" alt="d4-4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+              </div>
+              <div class="rounded-xl border p-3 text-sm bg-white mt-2">
+                <div class="flex items-center gap-2 mb-2">🚆 交通動線</div>
+                <ul class="list-disc pl-5 space-y-1">
+                  <li>名古屋駅 → 藤が丘駅：地鐵東山線約30分。</li>
+                  <li>藤が丘 → 愛・地球博記念公園駅：Linimo 磁浮線約15分。</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🍽️ 三餐</div>
+                  <ul class="space-y-1">
+                    <li>早餐：飯店/便利商店</li>
+                    <li>午餐：園內咖啡廳輕食</li>
+                    <li>晚餐：返回市區於名古屋駅/Sasashima Live 用餐</li>
+                  </ul>
+                </div>
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🛏️ 住宿</div>
+                  <div>名古屋天空塔王子飯店（GLOBAL GATE）</div>
+                </div>
+              </div>
+              <details class="border rounded-xl mt-2 group">
+                <summary class="w-full flex items-center justify-between px-3 py-2 text-sm cursor-pointer list-none">
+                  <span class="flex items-center gap-2"><span class="chev transition-transform group-open:rotate-180">▾</span> 展開行程內容</span>
+                </summary>
+                <div class="px-4 pb-3 text-sm text-gray-600 space-y-2">
+                  <div class="space-y-3">
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">分區/亮點</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>青春之丘、吉卜力大倉庫、Dondoko之森、魔法故里、魔女之谷（多區需分別購票）。</li>
+                        <li>大倉庫：經典場景展示（貓巴士、機器人兵）。</li>
+                        <li>Dondoko之森：《龍貓》場景；魔女之谷：《魔女宅急便》元素。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">票券/建議</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>熱門時段門票易售罄，建議至少提前2個月預訂。</li>
+                        <li>園區步行量大，請穿著好走鞋，夏季注意防曬與補水。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">營運提醒</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>週二常態休園（逢假日調整），Linimo 約10分一班；以官網為準。</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- D5 -->
+          <div class="shadow-sm rounded-xl border bg-white">
+            <div class="p-4 border-b">
+              <div class="flex items-baseline justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-3">
+                  <span class="inline-flex items-center justify-center rounded-full bg-black text-white px-3 py-1 text-base md:text-lg font-semibold">第 5 天</span>
+                  <span class="text-lg md:text-2xl font-semibold tracking-tight">2025/09/04 (四)</span>
+                </div>
+              </div>
+              <div class="text-xl md:text-2xl mt-2 font-semibold">久屋大通公園散步・榮區逛街購物</div>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="space-y-1">
+                <p class="text-base text-gray-700 leading-relaxed">上午久屋大通公園與電視塔周邊，下午榮區百貨/地下街購物。</p>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.nagoya-info.jp/upload/spots/large/20368120235f5f2bd90de30.jpg" alt="d5-1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.nagoya-info.jp/upload/spots/large/111069977762259ea6adcb8.jpg" alt="d5-2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://chiikawa-info.jp/chiikawaland/nagoya/img/main_02.jpg" alt="d5-3" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://pokemonnewspaper.com.au/wp-content/uploads/2024/10/Screenshot-2024-10-18-104428s.png" alt="d5-4" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+              </div>
+              <div class="rounded-xl border p-3 text-sm bg-white mt-2">
+                <div class="flex items-center gap-2 mb-2">🚆 交通動線</div>
+                <ul class="list-disc pl-5 space-y-1">
+                  <li>飯店 → 榮/久屋大通：地鐵約10–15分（名城線或東山線）。</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🍽️ 三餐</div>
+                  <ul class="space-y-1">
+                    <li>早餐：公園周邊咖啡廳早午餐</li>
+                    <li>午餐：百貨餐廳街</li>
+                    <li>晚餐：榮區/地下街自理</li>
+                  </ul>
+                </div>
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🛏️ 住宿</div>
+                  <div>名古屋天空塔王子飯店（GLOBAL GATE）</div>
+                </div>
+              </div>
+              <details class="border rounded-xl mt-2 group">
+                <summary class="w-full flex items-center justify-between px-3 py-2 text-sm cursor-pointer list-none">
+                  <span class="flex items-center gap-2"><span class="chev transition-transform group-open:rotate-180">▾</span> 展開行程內容</span>
+                </summary>
+                <div class="px-4 pb-3 text-sm text-gray-600 space-y-2">
+                  <div class="space-y-3">
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">購物重點</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>三越：精品/地下美食；松坂屋：規模大、類別齊全；地下街：平價服飾與藥妝。</li>
+                        <li>Parco：東館 2F/3F 角色雜貨（Jump Shop、Sanrio 等）。</li>
+                        <li>寶可夢中心：已於 2024/10/12 搬至名古屋 PARCO 東館2樓。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">甜點/餐飲</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>HARBS 榮本店下午茶（水蜜桃千層季節限定），熱門時段易排隊。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">實用資訊</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>PARCO 各層皆有電梯；建議在東館預留 1.5–2 小時。</li>
+                        <li>營業時間：Parco 10:00–21:00、HARBS 11:00–22:00（以現場為準）。</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- D6 -->
+          <div class="shadow-sm rounded-xl border bg-white">
+            <div class="p-4 border-b">
+              <div class="flex items-baseline justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-3">
+                  <span class="inline-flex items-center justify-center rounded-full bg-black text-white px-3 py-1 text-base md:text-lg font-semibold">第 6 天</span>
+                  <span class="text-lg md:text-2xl font-semibold tracking-tight">2025/09/05 (五)</span>
+                </div>
+              </div>
+              <div class="text-xl md:text-2xl mt-2 font-semibold">名古屋車站購物・機場前夜</div>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="space-y-1">
+                <p class="text-base text-gray-700 leading-relaxed">上午名古屋站周邊最後採買，午後前往機場入住機場飯店，傍晚參觀 Flight of Dreams。</p>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.nagoya-info.jp/upload/spots/large/15516837935e46533ce5220.jpg" alt="d6-1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.centrair.jp/flight-of-dreams/assets/images/flight-park/img-kv.jpg" alt="d6-2" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+              </div>
+              <div class="rounded-xl border p-3 text-sm bg-white mt-2">
+                <div class="flex items-center gap-2 mb-2">🚆 交通動線</div>
+                <ul class="list-disc pl-5 space-y-1">
+                  <li>名古屋駅 → 中部國際機場：名鐵特急約30–40分，班次密集。</li>
+                  <li>機場步行動線完善，辦理入住後可直接前往設施。</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🍽️ 三餐</div>
+                  <ul class="space-y-1">
+                    <li>早餐：飯店</li>
+                    <li>午餐：車站百貨美食街</li>
+                    <li>晚餐：機場餐廳街</li>
+                  </ul>
+                </div>
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🛏️ 住宿</div>
+                  <div>中部空港新特麗亞飯店</div>
+                </div>
+              </div>
+              <details class="border rounded-xl mt-2 group">
+                <summary class="w-full flex items-center justify-between px-3 py-2 text-sm cursor-pointer list-none">
+                  <span class="flex items-center gap-2"><span class="chev transition-transform group-open:rotate-180">▾</span> 展開行程內容</span>
+                </summary>
+                <div class="px-4 pb-3 text-sm text-gray-600 space-y-2">
+                  <div class="space-y-3">
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">購物 & 活動</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>JR 高島屋、名鐵百貨、地下街、BIC CAMERA 作為最後採買點。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">Flight of Dreams</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>展示 Boeing 787、駕駛艙模擬與 AR 互動，建議 15:00 前抵達。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">設施/親子</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>機場餐廳街選擇多元；有哺乳室與兒童遊戲區。</li>
+                      </ul>
+                    </div>
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">營運/時刻</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>Flight of Dreams 常見 10:00–17:00；名鐵特急班次密集，請行前查時刻表。</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+
+          <!-- D7 -->
+          <div class="shadow-sm rounded-xl border bg-white">
+            <div class="p-4 border-b">
+              <div class="flex items-baseline justify-between flex-wrap gap-2">
+                <div class="flex items-center gap-3">
+                  <span class="inline-flex items-center justify-center rounded-full bg-black text-white px-3 py-1 text-base md:text-lg font-semibold">第 7 天</span>
+                  <span class="text-lg md:text-2xl font-semibold tracking-tight">2025/09/06 (六)</span>
+                </div>
+              </div>
+              <div class="text-xl md:text-2xl mt-2 font-semibold">返家（早班機）</div>
+            </div>
+            <div class="p-4 space-y-3">
+              <div class="space-y-1">
+                <p class="text-base text-gray-700 leading-relaxed">退房後步行至航廈，辦理登機返家；把握最後免稅店時間。</p>
+              </div>
+              <div class="grid grid-cols-2 md:grid-cols-3 gap-2 mt-2">
+                <div class="aspect-[4/3] overflow-hidden rounded-lg border"><img src="https://www.centrair.jp/assets/img/event/enjoy-skydeck-slide-img03.jpg" alt="d7-1" class="w-full h-full object-cover" loading="lazy" decoding="async"></div>
+              </div>
+              <div class="rounded-xl border p-3 text-sm bg-white mt-2">
+                <div class="flex items-center gap-2 mb-2">🚆 交通動線</div>
+                <ul class="list-disc pl-5 space-y-1">
+                  <li>機場飯店 → 航廈：步行約5分，可先於便利商店購買早餐。</li>
+                </ul>
+              </div>
+              <div class="grid grid-cols-1 md:grid-cols-2 gap-3 mt-2">
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🍽️ 三餐</div>
+                  <ul class="space-y-1">
+                    <li>早餐：便利商店/咖啡廳</li>
+                    <li>午餐：—</li>
+                    <li>晚餐：—</li>
+                  </ul>
+                </div>
+                <div class="rounded-xl border p-3 text-sm bg-white">
+                  <div class="flex items-center gap-2 mb-2">🛏️ 住宿</div>
+                  <div>—</div>
+                </div>
+              </div>
+              <details class="border rounded-xl mt-2 group">
+                <summary class="w-full flex items-center justify-between px-3 py-2 text-sm cursor-pointer list-none">
+                  <span class="flex items-center gap-2"><span class="chev transition-transform group-open:rotate-180">▾</span> 展開行程內容</span>
+                </summary>
+                <div class="px-4 pb-3 text-sm text-gray-600 space-y-2">
+                  <div class="space-y-3">
+                    <div>
+                      <div class="font-medium text-gray-800 mb-1">出發提醒</div>
+                      <ul class="list-disc pl-5 space-y-1">
+                        <li>步行 5 分鐘可達航廈，建議預留安檢與稅務時間。</li>
+                        <li>若時間充裕，可最後逛免稅店購買伴手禮與零食。</li>
+                      </ul>
+                    </div>
+                  </div>
+                </div>
+              </details>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      
+    </main>
+
+    <script>
+      // 匯出 JSON（與頁面內容同步的資料結構）
+      const DATA = {
+        title: "名古屋親子美食購物七日行程",
+        subtitle: "",
+        hero: {
+          image: "https://www.legoland.jp/media/lvqbobyy/entrance_3-1.jpg",
+          caption: ""
+        },
+        flights: {
+          outbound: { airline: "日本航空 JAL", number: "JL8670", date: "2025/08/31 (日)", depTime: "14:05", dep: "桃園機場 第2航廈 (TPE T2)", arrTime: "17:50", arr: "中部國際機場 第1航廈 (NGO T1)" },
+          inbound:  { airline: "日本航空 JAL", number: "JL8671", date: "2025/09/06 (六)", depTime: "10:40", dep: "中部國際機場 第1航廈 (NGO T1)", arrTime: "12:45", arr: "桃園機場 第2航廈 (TPE T2)" }
+        },
+        itinerary: [
+          { day:1, date:"2025/08/31 (日)", title:"抵達名古屋・入住飯店", gallery:[
+              "https://photo.settour.com.tw/900x600/https://www.settour.com.tw/ss_img/info/location/NGO/O0/NGO0000012/NGO0000012_56401.jpg",
+              "https://www.princehotels.co.jp/nagoya/images/night-view%20meieki01.jpg",
+              "https://www.princehotels.co.jp/nagoya/experience/common/img/img_cont06-1.jpg"
+            ] },
+          { day:2, date:"2025/09/01 (一)", title:"樂高樂園親子冒險日", gallery:[
+              "https://www.legoland.jp/media/pjagn2v5/hero_re3.jpg",
+              "https://www.legoland.jp/media/vzifm0xv/1daypass.jpg"
+            ] },
+          { day:3, date:"2025/09/02 (二)", title:"名古屋港水族館・LaLaport 購物・Anitouch 室內動物園", gallery:[
+              "https://nagoyaaqua.jp/images/language/img6.jpg",
+              "https://nagoyaaqua.jp/images/language/img1.jpg",
+              "https://www.nagoya.anitouch.com/wp-content/themes/anitouch/assets/img/top/nekoashi.png"
+            ] },
+          { day:4, date:"2025/09/03 (三)", title:"吉卜力公園夢幻探險", gallery:[
+              "https://ghibli-park.jp/site/img/about/daisouko/img12.jpg",
+              "https://www.nagoya-info.jp/upload/spots/large/121592624163c0b4cc69d85.jpg",
+              "https://www.nagoya-info.jp/upload/spots/large/173925933163c0b45bde951.jpg",
+              "https://magazine.atnavi.net/wp-content/uploads/2024/03/DSC_6618-1024x682.jpg"
+            ] },
+          { day:5, date:"2025/09/04 (四)", title:"久屋大通公園散步・榮區逛街購物", gallery:[
+              "https://www.nagoya-info.jp/upload/spots/large/20368120235f5f2bd90de30.jpg",
+              "https://www.nagoya-info.jp/upload/spots/large/111069977762259ea6adcb8.jpg",
+              "https://chiikawa-info.jp/chiikawaland/nagoya/img/main_02.jpg",
+              "https://pokemonnewspaper.com.au/wp-content/uploads/2024/10/Screenshot-2024-10-18-104428s.png"
+            ] },
+          { day:6, date:"2025/09/05 (五)", title:"名古屋車站購物・機場前夜", gallery:[
+              "https://www.nagoya-info.jp/upload/spots/large/15516837935e46533ce5220.jpg",
+              "https://www.centrair.jp/flight-of-dreams/assets/images/flight-park/img-kv.jpg"
+            ] },
+          { day:7, date:"2025/09/06 (六)", title:"返家（早班機）", gallery:[
+              "https://www.centrair.jp/assets/img/event/enjoy-skydeck-slide-img03.jpg"
+            ] }
+        ]
+      };
+      document.getElementById('dljson').addEventListener('click', () => {
+        const blob = new Blob([JSON.stringify(DATA, null, 2)], {type: 'application/json'});
+        const url = URL.createObjectURL(blob);
+        const a = document.createElement('a'); a.href = url; a.download = 'nagoya-ezstyle.json'; a.click(); URL.revokeObjectURL(url);
+      });
+    </script>
+  </body>
+</html>
